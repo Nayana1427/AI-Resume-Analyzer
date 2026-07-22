@@ -1,0 +1,73 @@
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:Segoe UI,sans-serif;
+  background:#09090f;
+  color:white;
+}
+
+.app{
+
+  min-height:100vh;
+
+  background:
+  radial-gradient(circle at top left,#2b59ff 0%,transparent 35%),
+  radial-gradient(circle at top right,#6f3dff 0%,transparent 30%),
+  #09090f;
+}
+
+.overlay{
+
+  width:100%;
+  min-height:100vh;
+
+  backdrop-filter:blur(8px);
+
+  padding:40px;
+}
+
+.navbar{
+
+  display:flex;
+  justify-content:center;
+
+  margin-bottom:50px;
+}
+
+.logo{
+
+  font-size:34px;
+  font-weight:bold;
+
+  color:#4f8cff;
+}
+
+.hero{
+
+  text-align:center;
+
+  margin-bottom:50px;
+}
+
+.hero h1{
+
+  font-size:56px;
+
+  margin-bottom:15px;
+}
+
+.hero p{
+
+  width:700px;
+  max-width:90%;
+
+  margin:auto;
+
+  color:#bdbdbd;
+
+  font-size:18px;
+}

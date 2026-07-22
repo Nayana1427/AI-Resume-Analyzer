@@ -1,0 +1,329 @@
+{
+  "Software Engineer": {
+    "category": "Software Development",
+    "skills": ["Python", "Java", "C++", "DSA", "OOP", "Git", "SQL", "REST API"]
+  },
+  "Software Developer": {
+    "category": "Software Development",
+    "skills": ["Python", "Java", "JavaScript", "OOP", "DSA", "Git", "SQL"]
+  },
+  "Frontend Developer": {
+    "category": "Web Development",
+    "skills": ["HTML", "CSS", "JavaScript", "React", "Git", "REST API", "Responsive Design"]
+  },
+  "React Developer": {
+    "category": "Web Development",
+    "skills": ["HTML", "CSS", "JavaScript", "React", "Git", "REST API", "Redux"]
+  },
+  "Angular Developer": {
+    "category": "Web Development",
+    "skills": ["HTML", "CSS", "JavaScript", "TypeScript", "Angular", "Git", "REST API"]
+  },
+  "Vue.js Developer": {
+    "category": "Web Development",
+    "skills": ["HTML", "CSS", "JavaScript", "Vue.js", "Git", "REST API"]
+  },
+  "Backend Developer": {
+    "category": "Web Development",
+    "skills": ["Python", "Java", "Node.js", "SQL", "REST API", "Git", "Database"]
+  },
+  "Full Stack Developer": {
+    "category": "Web Development",
+    "skills": ["HTML", "CSS", "JavaScript", "React", "Node.js", "Python", "SQL", "Git", "REST API"]
+  },
+  "Python Developer": {
+    "category": "Software Development",
+    "skills": ["Python", "OOP", "SQL", "Git", "REST API", "FastAPI", "Django"]
+  },
+  "Java Developer": {
+    "category": "Software Development",
+    "skills": ["Java", "OOP", "DSA", "SQL", "Spring", "Spring Boot", "Git", "REST API"]
+  },
+  "C++ Developer": {
+    "category": "Software Development",
+    "skills": ["C++", "OOP", "DSA", "STL", "Git", "Algorithms"]
+  },
+  ".NET Developer": {
+    "category": "Software Development",
+    "skills": ["C#", ".NET", "ASP.NET", "SQL", "REST API", "Git", "OOP"]
+  },
+  "Node.js Developer": {
+    "category": "Web Development",
+    "skills": ["JavaScript", "Node.js", "Express.js", "REST API", "MongoDB", "SQL", "Git"]
+  },
+  "Web Developer": {
+    "category": "Web Development",
+    "skills": ["HTML", "CSS", "JavaScript", "Git", "Responsive Design", "REST API"]
+  },
+  "MERN Stack Developer": {
+    "category": "Web Development",
+    "skills": ["MongoDB", "Express.js", "React", "Node.js", "JavaScript", "Git", "REST API"]
+  },
+  "Django Developer": {
+    "category": "Web Development",
+    "skills": ["Python", "Django", "SQL", "REST API", "Git", "HTML", "CSS"]
+  },
+  "FastAPI Developer": {
+    "category": "Web Development",
+    "skills": ["Python", "FastAPI", "REST API", "SQL", "Git", "Pydantic"]
+  },
+
+  "AI Engineer": {
+    "category": "Artificial Intelligence",
+    "skills": ["Python", "Machine Learning", "Deep Learning", "TensorFlow", "PyTorch", "NLP", "Git"]
+  },
+  "Machine Learning Engineer": {
+    "category": "Artificial Intelligence",
+    "skills": ["Python", "Machine Learning", "Scikit-learn", "Pandas", "NumPy", "TensorFlow", "Git"]
+  },
+  "Generative AI Engineer": {
+    "category": "Artificial Intelligence",
+    "skills": ["Python", "Generative AI", "LLM", "Transformers", "LangChain", "RAG", "NLP", "Git"]
+  },
+  "LLM Engineer": {
+    "category": "Artificial Intelligence",
+    "skills": ["Python", "LLM", "Transformers", "NLP", "RAG", "LangChain", "Vector Database", "Git"]
+  },
+  "NLP Engineer": {
+    "category": "Artificial Intelligence",
+    "skills": ["Python", "NLP", "Machine Learning", "Deep Learning", "Transformers", "PyTorch", "TensorFlow"]
+  },
+  "Computer Vision Engineer": {
+    "category": "Artificial Intelligence",
+    "skills": ["Python", "Computer Vision", "OpenCV", "Deep Learning", "PyTorch", "TensorFlow", "CNN"]
+  },
+  "Deep Learning Engineer": {
+    "category": "Artificial Intelligence",
+    "skills": ["Python", "Deep Learning", "PyTorch", "TensorFlow", "Neural Networks", "NumPy", "Git"]
+  },
+  "AI Research Engineer": {
+    "category": "Artificial Intelligence",
+    "skills": ["Python", "Machine Learning", "Deep Learning", "PyTorch", "TensorFlow", "Research", "Statistics"]
+  },
+  "MLOps Engineer": {
+    "category": "Artificial Intelligence",
+    "skills": ["Python", "Machine Learning", "Docker", "Kubernetes", "MLflow", "AWS", "CI/CD", "Git"]
+  },
+
+  "Data Scientist": {
+    "category": "Data",
+    "skills": ["Python", "SQL", "Pandas", "NumPy", "Machine Learning", "Scikit-learn", "Statistics", "Data Visualization"]
+  },
+  "Data Analyst": {
+    "category": "Data",
+    "skills": ["SQL", "Excel", "Python", "Pandas", "Power BI", "Tableau", "Statistics"]
+  },
+  "Business Intelligence Analyst": {
+    "category": "Data",
+    "skills": ["SQL", "Power BI", "Tableau", "Excel", "Data Visualization", "Data Analysis"]
+  },
+  "Data Engineer": {
+    "category": "Data",
+    "skills": ["Python", "SQL", "ETL", "Apache Spark", "Data Warehouse", "AWS", "Git"]
+  },
+  "Analytics Engineer": {
+    "category": "Data",
+    "skills": ["SQL", "Python", "dbt", "Data Warehouse", "ETL", "Git"]
+  },
+  "Big Data Engineer": {
+    "category": "Data",
+    "skills": ["Python", "SQL", "Hadoop", "Apache Spark", "Kafka", "ETL", "AWS"]
+  },
+  "Database Developer": {
+    "category": "Database",
+    "skills": ["SQL", "MySQL", "PostgreSQL", "Database", "Stored Procedures", "Data Modeling"]
+  },
+  "Database Administrator": {
+    "category": "Database",
+    "skills": ["SQL", "MySQL", "PostgreSQL", "Database", "Backup", "Performance Tuning", "Linux"]
+  },
+
+  "DevOps Engineer": {
+    "category": "Cloud & DevOps",
+    "skills": ["Linux", "Docker", "Kubernetes", "Git", "CI/CD", "AWS", "Jenkins", "Terraform"]
+  },
+  "Cloud Engineer": {
+    "category": "Cloud & DevOps",
+    "skills": ["AWS", "Azure", "GCP", "Linux", "Docker", "Networking", "Terraform"]
+  },
+  "AWS Cloud Engineer": {
+    "category": "Cloud & DevOps",
+    "skills": ["AWS", "EC2", "S3", "Lambda", "IAM", "Docker", "Linux", "Terraform"]
+  },
+  "Azure Cloud Engineer": {
+    "category": "Cloud & DevOps",
+    "skills": ["Azure", "Virtual Machines", "Azure Functions", "Docker", "Linux", "Networking", "Terraform"]
+  },
+  "GCP Cloud Engineer": {
+    "category": "Cloud & DevOps",
+    "skills": ["GCP", "Compute Engine", "Cloud Storage", "Kubernetes", "Docker", "Linux", "Terraform"]
+  },
+  "Cloud Architect": {
+    "category": "Cloud & DevOps",
+    "skills": ["AWS", "Azure", "GCP", "Cloud Architecture", "Networking", "Security", "Terraform", "Kubernetes"]
+  },
+  "Site Reliability Engineer": {
+    "category": "Cloud & DevOps",
+    "skills": ["Linux", "Python", "Docker", "Kubernetes", "Monitoring", "CI/CD", "AWS", "Git"]
+  },
+  "Platform Engineer": {
+    "category": "Cloud & DevOps",
+    "skills": ["Linux", "Docker", "Kubernetes", "Terraform", "AWS", "CI/CD", "Git"]
+  },
+  "DevSecOps Engineer": {
+    "category": "Cloud & DevOps",
+    "skills": ["DevOps", "Security", "Docker", "Kubernetes", "CI/CD", "AWS", "Terraform", "Linux"]
+  },
+
+  "Cybersecurity Analyst": {
+    "category": "Cybersecurity",
+    "skills": ["Cybersecurity", "Networking", "Linux", "SIEM", "Incident Response", "Vulnerability Assessment"]
+  },
+  "Security Engineer": {
+    "category": "Cybersecurity",
+    "skills": ["Cybersecurity", "Network Security", "Linux", "Python", "SIEM", "Cloud Security"]
+  },
+  "SOC Analyst": {
+    "category": "Cybersecurity",
+    "skills": ["SIEM", "Cybersecurity", "Networking", "Incident Response", "Threat Detection", "Linux"]
+  },
+  "Penetration Tester": {
+    "category": "Cybersecurity",
+    "skills": ["Penetration Testing", "Linux", "Networking", "Python", "Web Security", "Burp Suite", "Nmap"]
+  },
+  "Application Security Engineer": {
+    "category": "Cybersecurity",
+    "skills": ["Application Security", "OWASP", "Web Security", "Python", "Git", "Security Testing"]
+  },
+  "Cloud Security Engineer": {
+    "category": "Cybersecurity",
+    "skills": ["Cloud Security", "AWS", "Azure", "IAM", "Networking", "Cybersecurity", "Linux"]
+  },
+
+  "QA Engineer": {
+    "category": "Testing",
+    "skills": ["Software Testing", "Test Cases", "Bug Tracking", "Selenium", "Git", "API Testing"]
+  },
+  "Software Test Engineer": {
+    "category": "Testing",
+    "skills": ["Software Testing", "Manual Testing", "Test Cases", "API Testing", "SQL", "Git"]
+  },
+  "Automation Test Engineer": {
+    "category": "Testing",
+    "skills": ["Selenium", "Java", "Python", "Automation Testing", "API Testing", "Git"]
+  },
+  "SDET": {
+    "category": "Testing",
+    "skills": ["Java", "Python", "Selenium", "Automation Testing", "API Testing", "DSA", "Git"]
+  },
+  "Performance Test Engineer": {
+    "category": "Testing",
+    "skills": ["Performance Testing", "JMeter", "API Testing", "Monitoring", "Linux"]
+  },
+
+  "Android Developer": {
+    "category": "Mobile Development",
+    "skills": ["Java", "Kotlin", "Android", "Android Studio", "REST API", "Git"]
+  },
+  "iOS Developer": {
+    "category": "Mobile Development",
+    "skills": ["Swift", "iOS", "Xcode", "REST API", "Git"]
+  },
+  "Flutter Developer": {
+    "category": "Mobile Development",
+    "skills": ["Dart", "Flutter", "REST API", "Firebase", "Git"]
+  },
+  "React Native Developer": {
+    "category": "Mobile Development",
+    "skills": ["JavaScript", "React Native", "React", "REST API", "Git", "Firebase"]
+  },
+
+  "UI Developer": {
+    "category": "Design & Frontend",
+    "skills": ["HTML", "CSS", "JavaScript", "Responsive Design", "React", "Git"]
+  },
+  "UI/UX Designer": {
+    "category": "Design",
+    "skills": ["Figma", "UI Design", "UX Design", "Wireframing", "Prototyping", "User Research"]
+  },
+  "UX Designer": {
+    "category": "Design",
+    "skills": ["Figma", "UX Design", "Wireframing", "Prototyping", "User Research", "Usability Testing"]
+  },
+  "Product Designer": {
+    "category": "Design",
+    "skills": ["Figma", "UI Design", "UX Design", "Prototyping", "Design Systems", "User Research"]
+  },
+
+  "Network Engineer": {
+    "category": "Infrastructure",
+    "skills": ["Networking", "TCP/IP", "DNS", "Routing", "Switching", "Linux", "Network Security"]
+  },
+  "System Administrator": {
+    "category": "Infrastructure",
+    "skills": ["Linux", "Windows Server", "Networking", "Shell Scripting", "System Administration"]
+  },
+  "Linux Administrator": {
+    "category": "Infrastructure",
+    "skills": ["Linux", "Shell Scripting", "Networking", "System Administration", "Security"]
+  },
+  "IT Support Engineer": {
+    "category": "IT",
+    "skills": ["Troubleshooting", "Networking", "Windows", "Linux", "Technical Support"]
+  },
+
+  "Blockchain Developer": {
+    "category": "Emerging Technology",
+    "skills": ["Blockchain", "Solidity", "Ethereum", "Web3", "JavaScript", "Smart Contracts", "Git"]
+  },
+  "IoT Developer": {
+    "category": "Emerging Technology",
+    "skills": ["IoT", "Python", "C++", "Embedded Systems", "MQTT", "Sensors"]
+  },
+  "Embedded Software Engineer": {
+    "category": "Embedded Systems",
+    "skills": ["C", "C++", "Embedded Systems", "Microcontrollers", "RTOS", "Git"]
+  },
+  "Robotics Engineer": {
+    "category": "Robotics",
+    "skills": ["Python", "C++", "ROS", "Robotics", "Computer Vision", "Linux"]
+  },
+
+  "Solutions Engineer": {
+    "category": "Technical Services",
+    "skills": ["REST API", "Cloud", "Networking", "Python", "Technical Communication", "Troubleshooting"]
+  },
+  "Technical Support Engineer": {
+    "category": "Technical Services",
+    "skills": ["Troubleshooting", "Linux", "Networking", "SQL", "Technical Support", "Communication"]
+  },
+  "Implementation Engineer": {
+    "category": "Technical Services",
+    "skills": ["SQL", "REST API", "Cloud", "Troubleshooting", "Technical Communication"]
+  },
+  "Technical Consultant": {
+    "category": "Technical Services",
+    "skills": ["Cloud", "SQL", "REST API", "Technical Communication", "Problem Solving"]
+  },
+
+  "Business Analyst": {
+    "category": "Business & Technology",
+    "skills": ["Business Analysis", "SQL", "Excel", "Requirements Gathering", "Data Analysis", "Communication"]
+  },
+  "Product Analyst": {
+    "category": "Business & Technology",
+    "skills": ["SQL", "Excel", "Data Analysis", "Product Analytics", "Statistics", "Data Visualization"]
+  },
+  "Product Manager": {
+    "category": "Product",
+    "skills": ["Product Management", "Agile", "Requirements Gathering", "Analytics", "Communication", "Jira"]
+  },
+  "Scrum Master": {
+    "category": "Product",
+    "skills": ["Agile", "Scrum", "Jira", "Project Management", "Communication"]
+  },
+  "Technical Project Manager": {
+    "category": "Management",
+    "skills": ["Project Management", "Agile", "Scrum", "Jira", "Software Development", "Communication"]
+  }
+}
