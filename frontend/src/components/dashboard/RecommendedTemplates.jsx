@@ -1086,6 +1086,16 @@ function classifyCandidate({
   certifications = [],
   bestRole = "Target Role",
 }) {
+  // IMPORTANT:
+  // Experience calculation uses ONLY the extracted Experience section.
+  // Education/project/certification dates are never counted.
+
+  const experienceText = experience
+    .map((item) => cleanString(item))
+    .filter(Boolean)
+    .join("\n")
+    .toLowerCase();
+
   const fullText = [
     resumeText,
     ...education,
@@ -1096,32 +1106,14 @@ function classifyCandidate({
     .join(" ")
     .toLowerCase();
 
-  const experienceText = experience
-    .join(" ")
-    .toLowerCase();
-
   /* =====================================================
-     1. EXPLICIT YEARS OF EXPERIENCE
+     EXPERIENCE TYPE
   ===================================================== */
 
-  const explicitYears =
-    extractYearsOfExperience(fullText);
-
-  /* =====================================================
-     2. ESTIMATE YEARS FROM EXPERIENCE DATES
-  ===================================================== */
-
-  const estimatedYears =
-    estimateExperienceYears(experienceText);
-
-  const years = Math.max(
-    explicitYears,
-    estimatedYears
-  );
-
-  /* =====================================================
-     3. PROFESSIONAL ROLE DETECTION
-  ===================================================== */
+  const internshipSignal =
+    /\b(intern|internship|trainee|apprentice|apprenticeship)\b/i.test(
+      experienceText
+    );
 
   const professionalRoles = [
     "software developer",
@@ -1159,37 +1151,31 @@ function classifyCandidate({
       experienceText.includes(role)
     );
 
-  /* =====================================================
-     4. INTERNSHIP DETECTION
-  ===================================================== */
-
-  const internshipSignal =
-    /\b(intern|internship|trainee)\b/i.test(
-      experienceText
-    );
-
-  /* =====================================================
-     5. STRONG PROFESSIONAL EXPERIENCE
-
-     IMPORTANT:
-     Education words DO NOT affect this.
-  ===================================================== */
+  const internshipOnly =
+    isInternshipOnly(experienceText);
 
   const hasProfessionalExperience =
-    hasProfessionalRole &&
-    !isInternshipOnly(experienceText);
+    hasProfessionalRole && !internshipOnly;
 
   /* =====================================================
-     6. STUDENT SIGNAL
+     EXPERIENCE YEARS
+  ===================================================== */
 
-     DO NOT ADD:
-     b.tech
-     bachelor
-     university
-     college
-     cgpa
+  const explicitYears =
+    extractYearsOfExperience(experienceText);
 
-     Experienced professionals also have education.
+  const estimatedYears =
+    estimateExperienceYears(experienceText);
+
+  // Internship-only candidates should NOT become
+  // experienced professionals because of internship dates.
+  const professionalYears =
+    hasProfessionalExperience
+      ? Math.max(explicitYears, estimatedYears)
+      : 0;
+
+  /* =====================================================
+     STUDENT SIGNAL
   ===================================================== */
 
   const studentKeywords = [
@@ -1213,18 +1199,12 @@ function classifyCandidate({
     );
 
   /* =====================================================
-     DECISION 1
      EXPERIENCED PROFESSIONAL
-
-     THIS HAS HIGHEST PRIORITY
   ===================================================== */
 
   if (
-    years >= 2 ||
-    (
-      hasProfessionalExperience &&
-      estimatedYears >= 1
-    )
+    hasProfessionalExperience &&
+    professionalYears >= 2
   ) {
     return {
       label: "Experienced Professional",
@@ -1232,9 +1212,7 @@ function classifyCandidate({
       template: "professional",
 
       experienceLevel:
-        years >= 1
-          ? `${formatYears(years)}+ years`
-          : "Professional",
+        `${formatYears(professionalYears)}+ years`,
 
       reason:
         "Your professional work experience is one of the strongest parts of your profile. The Experienced Professional template prioritizes your work history, responsibilities, achievements and technical impact.",
@@ -1242,16 +1220,14 @@ function classifyCandidate({
   }
 
   /* =====================================================
-     DECISION 2
      STUDENT / FRESHER
   ===================================================== */
 
   if (
-    studentSignal ||
-    (
-      internshipSignal &&
-      !hasProfessionalExperience
-    )
+    internshipOnly ||
+    (internshipSignal &&
+      !hasProfessionalExperience) ||
+    studentSignal
   ) {
     return {
       label: "Student / Fresher",
@@ -1269,8 +1245,7 @@ function classifyCandidate({
   }
 
   /* =====================================================
-     DECISION 3
-     PROFESSIONAL ROLE WITHOUT 2 YEARS
+     EARLY CAREER
   ===================================================== */
 
   if (hasProfessionalExperience) {
@@ -1280,8 +1255,8 @@ function classifyCandidate({
       template: "modern",
 
       experienceLevel:
-        years > 0
-          ? `${formatYears(years)} years`
+        professionalYears > 0
+          ? `${formatYears(professionalYears)} years`
           : "Early Career",
 
       reason:
@@ -1290,8 +1265,7 @@ function classifyCandidate({
   }
 
   /* =====================================================
-     DECISION 4
-     STRONG TECHNICAL / PROJECT PROFILE
+     TECHNICAL / PROJECT PROFILE
   ===================================================== */
 
   if (
@@ -1303,9 +1277,10 @@ function classifyCandidate({
 
       template: "modern",
 
-      experienceLevel: internshipSignal
-        ? "Internship"
-        : "Early Career",
+      experienceLevel:
+        internshipSignal
+          ? "Internship"
+          : "Entry Level",
 
       reason:
         `Your technical skills and project experience align well with ${bestRole}. The Modern Professional template gives your technical capabilities and projects stronger visibility.`,
@@ -1313,8 +1288,7 @@ function classifyCandidate({
   }
 
   /* =====================================================
-     DECISION 5
-     DEFAULT CLASSIC ATS
+     DEFAULT
   ===================================================== */
 
   return {
@@ -1331,7 +1305,7 @@ function classifyCandidate({
 
 
 /* =========================================================
-   EXTRACT EXPLICIT YEARS
+   EXPLICIT YEARS
 ========================================================= */
 
 function extractYearsOfExperience(text) {
@@ -1340,24 +1314,28 @@ function extractYearsOfExperience(text) {
   }
 
   const patterns = [
-    /(\d+(?:\.\d+)?)\+?\s*years?\s+(?:of\s+)?experience/i,
+    /\b(\d+(?:\.\d+)?)\+?\s*years?\s+(?:of\s+)?(?:professional\s+|work\s+)?experience\b/i,
 
-    /(\d+(?:\.\d+)?)\+?\s*years?\s+(?:of\s+)?professional\s+experience/i,
+    /\bexperience\s+(?:of\s+)?(\d+(?:\.\d+)?)\+?\s*years?\b/i,
 
-    /experience\s+(?:of\s+)?(\d+(?:\.\d+)?)\+?\s*years?/i,
-
-    /(\d+(?:\.\d+)?)\+?\s*yrs?\s+(?:of\s+)?experience/i,
+    /\b(\d+(?:\.\d+)?)\+?\s*yrs?\s+(?:of\s+)?(?:professional\s+|work\s+)?experience\b/i,
   ];
 
   for (const pattern of patterns) {
     const match = text.match(pattern);
 
-    if (match) {
-      const value = Number(match[1]);
+    if (!match) {
+      continue;
+    }
 
-      if (!Number.isNaN(value)) {
-        return value;
-      }
+    const value = Number(match[1]);
+
+    if (
+      !Number.isNaN(value) &&
+      value >= 0 &&
+      value <= 60
+    ) {
+      return value;
     }
   }
 
@@ -1366,7 +1344,7 @@ function extractYearsOfExperience(text) {
 
 
 /* =========================================================
-   ESTIMATE EXPERIENCE FROM DATE RANGES
+   EXPERIENCE DATE CALCULATION
 ========================================================= */
 
 function estimateExperienceYears(text) {
@@ -1377,50 +1355,46 @@ function estimateExperienceYears(text) {
   const monthMap = {
     jan: 0,
     january: 0,
-
     feb: 1,
     february: 1,
-
     mar: 2,
     march: 2,
-
     apr: 3,
     april: 3,
-
     may: 4,
-
     jun: 5,
     june: 5,
-
     jul: 6,
     july: 6,
-
     aug: 7,
     august: 7,
-
     sep: 8,
     sept: 8,
     september: 8,
-
     oct: 9,
     october: 9,
-
     nov: 10,
     november: 10,
-
     dec: 11,
     december: 11,
   };
 
-  const pattern =
-    /\b(jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|may|jun(?:e)?|jul(?:y)?|aug(?:ust)?|sep(?:t(?:ember)?)?|oct(?:ober)?|nov(?:ember)?|dec(?:ember)?)?\s*(20\d{2})\s*(?:-|–|—|to)\s*(?:(jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|may|jun(?:e)?|jul(?:y)?|aug(?:ust)?|sep(?:t(?:ember)?)?|oct(?:ober)?|nov(?:ember)?|dec(?:ember)?)?\s*(20\d{2})|present|current|now)\b/gi;
+  const monthPattern =
+    "(jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|may|jun(?:e)?|jul(?:y)?|aug(?:ust)?|sep(?:t(?:ember)?)?|oct(?:ober)?|nov(?:ember)?|dec(?:ember)?)";
 
-  let totalMonths = 0;
+  const ranges = [];
+
+  const monthYearRegex =
+    new RegExp(
+      `\\b${monthPattern}\\s+(20\\d{2})\\s*(?:-|–|—|to)\\s*(?:${monthPattern}\\s+(20\\d{2})|(present|current|now))\\b`,
+      "gi"
+    );
 
   let match;
 
   while (
-    (match = pattern.exec(text)) !== null
+    (match =
+      monthYearRegex.exec(text)) !== null
   ) {
     const startMonthText =
       match[1]?.toLowerCase();
@@ -1434,22 +1408,16 @@ function estimateExperienceYears(text) {
     const endYearText =
       match[4];
 
+    const presentText =
+      match[5];
+
     const startMonth =
-      startMonthText
-        ? monthMap[startMonthText] ?? 0
-        : 0;
+      monthMap[startMonthText];
 
     let endYear;
     let endMonth;
 
-    if (endYearText) {
-      endYear = Number(endYearText);
-
-      endMonth =
-        endMonthText
-          ? monthMap[endMonthText] ?? 11
-          : 11;
-    } else {
+    if (presentText) {
       const now = new Date();
 
       endYear =
@@ -1457,26 +1425,102 @@ function estimateExperienceYears(text) {
 
       endMonth =
         now.getMonth();
+    } else {
+      endYear =
+        Number(endYearText);
+
+      endMonth =
+        monthMap[endMonthText];
     }
 
-    const startValue =
-      startYear * 12 +
-      startMonth;
-
-    const endValue =
-      endYear * 12 +
-      endMonth;
-
-    const months =
-      endValue - startValue;
-
-    if (
-      months > 0 &&
-      months < 600
-    ) {
-      totalMonths += months;
-    }
+    addExperienceRange(
+      ranges,
+      startYear,
+      startMonth,
+      endYear,
+      endMonth
+    );
   }
+
+  /*
+    Remove month/year ranges before checking
+    year-only ranges to avoid counting twice.
+  */
+
+  const withoutMonthRanges =
+    text.replace(
+      monthYearRegex,
+      " "
+    );
+
+  const yearRegex =
+    /\b(20\d{2})\s*(?:-|–|—|to)\s*(?:(20\d{2})|(present|current|now))\b/gi;
+
+  while (
+    (match =
+      yearRegex.exec(
+        withoutMonthRanges
+      )) !== null
+  ) {
+    const startYear =
+      Number(match[1]);
+
+    const endYearText =
+      match[2];
+
+    const presentText =
+      match[3];
+
+    let endYear;
+    let endMonth;
+
+    if (presentText) {
+      const now = new Date();
+
+      endYear =
+        now.getFullYear();
+
+      endMonth =
+        now.getMonth();
+    } else {
+      endYear =
+        Number(endYearText);
+
+      endMonth = 11;
+    }
+
+    addExperienceRange(
+      ranges,
+      startYear,
+      0,
+      endYear,
+      endMonth
+    );
+  }
+
+  if (!ranges.length) {
+    return 0;
+  }
+
+  /*
+    Merge overlapping dates instead of
+    blindly adding all jobs together.
+  */
+
+  const merged =
+    mergeMonthRanges(ranges);
+
+  const totalMonths =
+    merged.reduce(
+      (sum, range) =>
+        sum +
+        (
+          range.end -
+          range.start +
+          1
+        ),
+      0
+    );
 
   if (totalMonths <= 0) {
     return 0;
@@ -1489,7 +1533,105 @@ function estimateExperienceYears(text) {
 
 
 /* =========================================================
-   CHECK WHETHER EXPERIENCE IS ONLY INTERNSHIP
+   ADD EXPERIENCE RANGE
+========================================================= */
+
+function addExperienceRange(
+  ranges,
+  startYear,
+  startMonth,
+  endYear,
+  endMonth
+) {
+  if (
+    !Number.isFinite(startYear) ||
+    !Number.isFinite(startMonth) ||
+    !Number.isFinite(endYear) ||
+    !Number.isFinite(endMonth)
+  ) {
+    return;
+  }
+
+  const start =
+    startYear * 12 +
+    startMonth;
+
+  const end =
+    endYear * 12 +
+    endMonth;
+
+  const months =
+    end - start + 1;
+
+  if (
+    end < start ||
+    months <= 0 ||
+    months > 720
+  ) {
+    return;
+  }
+
+  ranges.push({
+    start,
+    end,
+  });
+}
+
+
+/* =========================================================
+   MERGE OVERLAPPING DATES
+========================================================= */
+
+function mergeMonthRanges(ranges) {
+  if (!ranges.length) {
+    return [];
+  }
+
+  const sorted =
+    [...ranges].sort(
+      (a, b) =>
+        a.start - b.start
+    );
+
+  const merged = [
+    { ...sorted[0] },
+  ];
+
+  for (
+    let index = 1;
+    index < sorted.length;
+    index += 1
+  ) {
+    const current =
+      sorted[index];
+
+    const previous =
+      merged[
+        merged.length - 1
+      ];
+
+    if (
+      current.start <=
+      previous.end + 1
+    ) {
+      previous.end =
+        Math.max(
+          previous.end,
+          current.end
+        );
+    } else {
+      merged.push({
+        ...current,
+      });
+    }
+  }
+
+  return merged;
+}
+
+
+/* =========================================================
+   INTERNSHIP ONLY CHECK
 ========================================================= */
 
 function isInternshipOnly(text) {
@@ -1498,20 +1640,56 @@ function isInternshipOnly(text) {
   }
 
   const internshipWords =
-    /\b(intern|internship|trainee)\b/i;
+    /\b(intern|internship|trainee|apprentice|apprenticeship)\b/i;
+
+  if (
+    !internshipWords.test(text)
+  ) {
+    return false;
+  }
 
   const professionalWords =
-    /\b(software developer|software engineer|data analyst|data scientist|machine learning engineer|ml engineer|ai engineer|backend developer|frontend developer|full stack developer|web developer|application developer|systems engineer|devops engineer|cloud engineer|business analyst|consultant|manager|team lead)\b/i;
+    /\b(software developer|software engineer|data analyst|data scientist|machine learning engineer|ml engineer|ai engineer|backend developer|back-end developer|frontend developer|front-end developer|full stack developer|full-stack developer|web developer|application developer|systems engineer|system engineer|devops engineer|cloud engineer|business analyst|technical analyst|associate engineer|consultant|manager|team lead|project manager)\b/i;
 
-  const hasInternship =
-    internshipWords.test(text);
+  const lines = text
+    .split(/\n+/)
+    .map((line) =>
+      line.trim()
+    )
+    .filter(Boolean);
 
-  const hasProfessional =
-    professionalWords.test(text);
+  /*
+    Example:
+
+    Software Developer Intern
+
+    contains "Software Developer", but it is
+    STILL an internship.
+
+    Therefore professional role + intern on
+    same line does not count as full-time.
+  */
+
+  const hasNonInternProfessionalRole =
+    lines.some((line) => {
+      const hasRole =
+        professionalWords.test(
+          line
+        );
+
+      const isInternLine =
+        internshipWords.test(
+          line
+        );
+
+      return (
+        hasRole &&
+        !isInternLine
+      );
+    });
 
   return (
-    hasInternship &&
-    !hasProfessional
+    !hasNonInternProfessionalRole
   );
 }
 
@@ -1532,6 +1710,7 @@ function formatYears(years) {
 
   return value.toFixed(1);
 }
+
 /* =========================================================
    SIGNAL
 ========================================================= */
