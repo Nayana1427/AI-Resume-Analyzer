@@ -607,10 +607,15 @@ function RecommendedTemplates({ result }) {
                       recommended
                         ? `
                           border-violet-400
-                          bg-violet-50/40
+                          bg-violet-50
                           ring-2
-                          ring-violet-100
+                          ring-violet-200
                           shadow-md
+                          shadow-violet-100/50
+                          dark:border-violet-500
+                          dark:bg-slate-900
+                          dark:ring-violet-500/40
+                          dark:shadow-violet-950/30
                         `
                         : `
                           border-slate-200
@@ -619,6 +624,7 @@ function RecommendedTemplates({ result }) {
                           hover:shadow-lg
                           dark:border-slate-800
                           dark:bg-slate-900
+                          dark:hover:border-slate-700
                         `
                     }
                   `}
@@ -700,6 +706,7 @@ function RecommendedTemplates({ result }) {
                       text-xs
                       leading-5
                       text-slate-500
+                      dark:text-slate-400
                     "
                   >
                     {template.description}
@@ -734,6 +741,9 @@ function RecommendedTemplates({ result }) {
                             bg-slate-100
                             text-slate-700
                             hover:bg-slate-200
+                            dark:bg-slate-800
+                            dark:text-slate-200
+                            dark:hover:bg-slate-700
                           `
                       }
                     `}
@@ -757,6 +767,8 @@ function RecommendedTemplates({ result }) {
               border-violet-200
               bg-violet-50/60
               p-5
+              dark:border-violet-800
+              dark:bg-violet-950/20
             "
           >
             <div className="flex gap-4">
@@ -771,6 +783,7 @@ function RecommendedTemplates({ result }) {
                   rounded-xl
                   bg-white
                   shadow-sm
+                  dark:bg-slate-900
                 "
               >
                 <Check
@@ -798,6 +811,7 @@ function RecommendedTemplates({ result }) {
                     text-lg
                     font-black
                     text-slate-950
+                    dark:text-white
                   "
                 >
                   {recommendedTemplateData.name}
@@ -809,6 +823,7 @@ function RecommendedTemplates({ result }) {
                     text-sm
                     leading-6
                     text-slate-600
+                    dark:text-slate-300
                   "
                 >
                   {profile.reason}
@@ -1534,6 +1549,8 @@ function ProfileSignal({
         bg-white
         px-4
         py-3
+        dark:border-slate-800
+        dark:bg-slate-900
       "
     >
       <p
@@ -1543,6 +1560,7 @@ function ProfileSignal({
           uppercase
           tracking-wider
           text-slate-400
+          dark:text-slate-500
         "
       >
         {label}
@@ -1554,6 +1572,7 @@ function ProfileSignal({
           text-sm
           font-black
           text-slate-900
+          dark:text-white
         "
       >
         {value}
