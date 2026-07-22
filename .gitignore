@@ -1,57 +1,21 @@
-# =========================
-# Python
-# =========================
-venv/
-backend/venv/
-__pycache__/
-*.py[cod]
-*.pyo
-.pytest_cache/
-.mypy_cache/
-
-# =========================
-# Environment / Secrets
-# =========================
+# Secrets
 .env
-.env.*
-!.env.example
-backend/.env
-frontend/.env
+*.env
 
-# =========================
-# Node / React
-# =========================
+# Python
+venv/
+.venv/
+__pycache__/
+*.pyc
+
+# Node
 node_modules/
 frontend/node_modules/
 frontend/dist/
-dist/
 
-# =========================
-# User uploaded resumes
-# =========================
+# Generated/uploaded files
 backend/app/uploads/
-backend/uploads/
-
-# =========================
-# Generated resumes
-# =========================
 backend/app/generated_resumes/
-backend/generated_resumes/
-backend/generated/
-backend/output/
 
-# =========================
-# IDE / OS
-# =========================
+# IDE
 .vscode/
-.idea/
-.DS_Store
-Thumbs.db
-
-# =========================
-# Logs
-# =========================
-*.log
-*.tmp
-backend/app/uploads/
-backend/app/generated_resumes/

@@ -1,646 +1,602 @@
-\# AI Resume Analyzer
+# 🚀 AI Resume Analyzer
 
+An **AI-powered full-stack Resume Analysis and Resume Generation Platform** that helps job seekers evaluate their resumes, improve ATS compatibility, identify skill strengths and gaps, discover suitable career paths, and generate professionally structured resumes.
 
+The platform combines **resume parsing, ATS analysis, career matching, intelligent recommendations, and AI-powered insights** into a single application.
 
-An intelligent full-stack resume analysis platform that helps users evaluate their resumes, identify strengths and weaknesses, discover suitable career roles, and generate professionally structured resume templates.
+---
 
+## ✨ Key Features
 
+### 📄 Intelligent Resume Analysis
 
-The application analyzes uploaded resumes and provides ATS insights, skill analysis, career recommendations, AI-powered suggestions, and personalized resume template recommendations.
+Upload a resume in **PDF or DOCX format** and automatically extract important candidate information.
 
+The system identifies:
 
+* 👤 Name and contact information
+* 🎓 Education
+* 💼 Work experience and internships
+* 🛠️ Technical skills
+* 🚀 Projects
+* 🏆 Certifications
 
-\---
+The extracted information is converted into structured data for further analysis.
 
+---
 
+### 🎯 ATS Resume Scoring
 
-\## Features
+Evaluate how well a resume is optimized for **Applicant Tracking Systems (ATS)**.
 
+The ATS engine:
 
+* Generates an overall **ATS score**
+* Evaluates resume structure and completeness
+* Identifies strengths
+* Detects missing or weak sections
+* Provides actionable improvement suggestions
+* Helps improve resume readability and effectiveness
 
-\### Resume Analysis
+---
 
-\- Upload PDF and DOCX resumes
+### 🧠 AI-Powered Recommendations
 
-\- Automatically extract resume content
+The platform integrates the **Google Gemini API** to provide intelligent resume improvement recommendations.
 
-\- Extract candidate details such as name, email, and phone number
+AI-powered analysis helps users:
 
-\- Identify education, experience, projects, skills, and certifications
+* Identify areas that need improvement
+* Improve professional presentation
+* Strengthen resume content
+* Receive personalized suggestions based on their profile
 
-\- Process resume content into structured data
+---
 
+### 🛠️ Skill Analysis
 
+Automatically identify technical skills from uploaded resumes.
 
-\### ATS Resume Scoring
+The system:
 
-\- Analyze resumes for ATS compatibility
+* Detects programming languages
+* Identifies frameworks and technologies
+* Recognizes technical tools
+* Organizes skills into structured information
+* Uses detected skills for career matching
 
-\- Generate an ATS score
+---
 
-\- Identify resume strengths and improvement areas
+### 💼 Career Role Matching
 
-\- Provide actionable suggestions to improve resume quality
+The application analyzes the candidate's skills and profile to recommend suitable career opportunities.
 
+Each recommended role includes a **career match percentage**, helping users understand how closely their current profile aligns with different career paths.
 
+Example recommendations may include:
 
-\### Skill Analysis
+* Software Developer
+* Frontend Developer
+* Backend Developer
+* Full Stack Developer
+* Data Analyst
+* Data Scientist
+* Machine Learning Engineer
+* AI/ML Developer
 
-\- Automatically detect technical skills
+---
 
-\- Compare detected skills with career requirements
+### 📊 Career Match Percentage
 
-\- Highlight relevant technical capabilities
+Career compatibility is calculated by comparing detected resume skills with predefined skill requirements for different roles.
 
-\- Structure skills for easier resume evaluation
+This helps users understand:
 
+> **“Which career roles currently match my skills?”**
 
+and
 
-\### Career Matching
+> **“Which skills should I learn to improve my career opportunities?”**
 
-\- Analyze candidate skills and resume information
+---
 
-\- Recommend suitable career roles
+### 🎨 Smart Resume Template Recommendation
 
-\- Display career match percentages
+Instead of forcing users to manually choose a template, the application analyzes their profile and recommends an appropriate resume format.
 
-\- Help candidates understand which roles best match their profile
+Available templates include:
 
+| Candidate Profile                   | Recommended Template     |
+| ----------------------------------- | ------------------------ |
+| 🎓 Student / Fresher                | Fresher / Student        |
+| 💻 Technical Early-Career Candidate | Modern Professional      |
+| 💼 Experienced Candidate            | Experienced Professional |
+| 📄 General Profile                  | Classic ATS              |
 
+Template recommendations consider:
 
-\### AI Recommendations
+* Professional experience
+* Internships
+* Technical skills
+* Projects
+* Education
+* Overall candidate profile
 
-\- Generate intelligent resume improvement suggestions
+Professional experience is given higher priority when identifying experienced candidates.
 
-\- Provide recommendations based on resume content
+---
 
-\- Help improve professional presentation and resume quality
+### 👀 Resume Preview
 
+Before generating the final resume, users can preview the professionally structured version.
 
+The preview organizes:
 
-\### Smart Resume Templates
+* Professional Summary
+* Technical Skills
+* Education
+* Work Experience
+* Projects
+* Certifications
+* LinkedIn
+* GitHub
+* Contact Information
 
-The application dynamically recommends a resume template based on the candidate's profile.
+---
 
+### 📥 Professional Resume Generation
 
+Users can generate a professionally formatted resume based on the structured information extracted from their original resume.
 
-Available templates:
+Generated resumes include:
 
+* Clean professional layout
+* Structured sections
+* ATS-friendly formatting
+* Organized skills
+* Professional experience formatting
+* Project descriptions
+* Education details
+* Certification information
+* LinkedIn and GitHub links
 
+The final resume can be generated as a **PDF document**.
 
-\- Classic ATS
+---
 
-\- Modern Professional
+# 🏗️ System Architecture
 
-\- Fresher / Student
-
-\- Experienced Professional
-
-
-
-The recommendation system considers professional experience, internships, technical skills, projects, and candidate profile information to determine the best-fit template.
-
-
-
-\### Resume Preview and Generation
-
-\- Preview recommended resume templates
-
-\- Automatically structure resume sections
-
-\- Clean professional summary formatting
-
-\- Organized technical skills
-
-\- Structured education and work experience
-
-\- Project and certification formatting
-
-\- LinkedIn and GitHub support
-
-\- Generate professional resume PDFs
-
-
-
-\---
-
-
-
-\## Tech Stack
-
-
-
-\### Frontend
-
-\- React
-
-\- Vite
-
-\- JavaScript
-
-\- Tailwind CSS
-
-\- Lucide React
-
-\- Axios
-
-
-
-\### Backend
-
-\- Python
-
-\- FastAPI
-
-\- Pydantic
-
-\- PyMuPDF
-
-\- python-docx
-
-\- ReportLab
-
-
-
-\### AI
-
-\- Google Gemini API
-
-
-
-\### Development Tools
-
-\- Git
-
-\- GitHub
-
-\- VS Code
-
-
-
-\---
-
-
-
-\## Project Structure
-
-
+The application follows a full-stack architecture:
 
 ```text
+                        ┌─────────────────────┐
+                        │        User         │
+                        └──────────┬──────────┘
+                                   │
+                                   ▼
+                        ┌─────────────────────┐
+                        │   React Frontend    │
+                        │   Vite + Tailwind   │
+                        └──────────┬──────────┘
+                                   │
+                              REST API
+                                   │
+                                   ▼
+                        ┌─────────────────────┐
+                        │  FastAPI Backend    │
+                        └──────────┬──────────┘
+                                   │
+                 ┌─────────────────┼─────────────────┐
+                 │                 │                 │
+                 ▼                 ▼                 ▼
+        ┌────────────────┐ ┌──────────────┐ ┌────────────────┐
+        │ Resume Parser  │ │  ATS Engine  │ │ Career Matcher │
+        └────────┬───────┘ └──────────────┘ └────────────────┘
+                 │
+                 ▼
+        ┌──────────────────────┐
+        │ Information Extractor│
+        └──────────┬───────────┘
+                   │
+       ┌───────────┼───────────┬───────────┐
+       ▼           ▼           ▼           ▼
+    Skills     Education   Experience   Projects
+                   │
+                   ▼
+        ┌─────────────────────┐
+        │ Google Gemini API   │
+        │ AI Recommendations  │
+        └─────────────────────┘
+```
 
+---
+
+# 🛠️ Tech Stack
+
+## Frontend
+
+* ⚛️ React
+* ⚡ Vite
+* 🟨 JavaScript
+* 🎨 Tailwind CSS
+* 🧩 Lucide React
+* 🔗 Axios
+
+## Backend
+
+* 🐍 Python
+* ⚡ FastAPI
+* 📦 Pydantic
+* 📄 PyMuPDF
+* 📝 python-docx
+* 📑 ReportLab
+
+## Artificial Intelligence
+
+* 🤖 Google Gemini API
+
+## Development Tools
+
+* Git
+* GitHub
+* VS Code
+
+---
+
+# 📁 Project Structure
+
+```text
 AI-Resume-Analyzer/
-
 │
-
 ├── backend/
-
 │   ├── app/
-
 │   │   ├── data/
-
-│   │   │   ├── job\_roles.json
-
+│   │   │   ├── job_roles.json
 │   │   │   └── skills.json
-
 │   │   │
-
 │   │   ├── database/
-
 │   │   │   └── db.py
-
 │   │   │
-
 │   │   ├── models/
-
 │   │   │   └── schemas.py
-
 │   │   │
-
 │   │   ├── routes/
-
 │   │   │   ├── analyze.py
-
-│   │   │   ├── generate\_resume.py
-
+│   │   │   ├── generate_resume.py
 │   │   │   └── upload.py
-
 │   │   │
-
 │   │   ├── services/
-
-│   │   │   ├── ai\_service.py
-
-│   │   │   ├── ats\_engine.py
-
-│   │   │   ├── certification\_extractor.py
-
-│   │   │   ├── education\_extractor.py
-
-│   │   │   ├── experience\_extractor.py
-
-│   │   │   ├── information\_extractor.py
-
+│   │   │   ├── ai_service.py
+│   │   │   ├── ats_engine.py
+│   │   │   ├── certification_extractor.py
+│   │   │   ├── education_extractor.py
+│   │   │   ├── experience_extractor.py
+│   │   │   ├── information_extractor.py
 │   │   │   ├── parser.py
-
-│   │   │   ├── project\_extractor.py
-
-│   │   │   ├── resume\_generator.py
-
-│   │   │   ├── resume\_structurer.py
-
+│   │   │   ├── project_extractor.py
+│   │   │   ├── resume_generator.py
+│   │   │   ├── resume_structurer.py
 │   │   │   ├── scoring.py
-
-│   │   │   └── skill\_extractor.py
-
+│   │   │   └── skill_extractor.py
 │   │   │
-
 │   │   └── main.py
-
 │   │
-
 │   └── requirements.txt
-
 │
-
 ├── frontend/
-
 │   ├── public/
-
 │   ├── src/
-
 │   │   ├── components/
-
 │   │   │   ├── dashboard/
-
 │   │   │   └── ui/
-
 │   │   ├── layouts/
-
 │   │   ├── pages/
-
 │   │   ├── services/
-
 │   │   ├── App.jsx
-
 │   │   └── main.jsx
-
 │   │
-
 │   └── package.json
-
 │
-
 ├── .gitignore
-
 └── README.md
-
 ```
 
+---
 
+# ⚙️ How It Works
 
-\---
+The complete resume analysis pipeline works as follows:
 
+1. 📤 User uploads a **PDF or DOCX resume**
+2. 📄 Backend extracts text from the uploaded document
+3. 🔍 Candidate information is identified
+4. 🧩 Resume information is converted into structured data
+5. 🛠️ Technical skills are detected
+6. 🎓 Education, experience, projects, and certifications are extracted
+7. 🎯 ATS engine evaluates resume quality
+8. 💼 Career matching algorithm identifies suitable roles
+9. 🤖 Gemini AI generates intelligent improvement recommendations
+10. 🎨 Candidate profile is analyzed to recommend a resume template
+11. 👀 User previews the structured resume
+12. 📥 Professional resume PDF can be generated
 
+---
 
-\## How It Works
+# 🧩 Resume Processing Modules
 
+The backend uses dedicated modules to keep the resume-processing pipeline modular and maintainable.
 
+| Module                       | Responsibility                                             |
+| ---------------------------- | ---------------------------------------------------------- |
+| `parser.py`                  | Extracts text from PDF and DOCX resumes                    |
+| `information_extractor.py`   | Extracts candidate contact/profile information             |
+| `skill_extractor.py`         | Detects technical skills                                   |
+| `education_extractor.py`     | Extracts educational qualifications                        |
+| `experience_extractor.py`    | Identifies work experience and internships                 |
+| `project_extractor.py`       | Extracts candidate projects                                |
+| `certification_extractor.py` | Identifies certifications                                  |
+| `ats_engine.py`              | Performs ATS analysis                                      |
+| `scoring.py`                 | Handles resume scoring logic                               |
+| `ai_service.py`              | Integrates Gemini AI recommendations                       |
+| `resume_structurer.py`       | Converts extracted information into resume-ready structure |
+| `resume_generator.py`        | Generates professional resume PDFs                         |
 
-1\. The user uploads a resume in PDF or DOCX format.
+---
 
-2\. The backend extracts text from the uploaded document.
+# 🚀 Getting Started
 
-3\. Resume information is converted into structured data.
+## Prerequisites
 
-4\. Skills, education, experience, projects, and certifications are detected.
+Make sure you have installed:
 
-5\. The ATS engine evaluates the resume.
+* Python 3.10+
+* Node.js
+* npm
+* Git
 
-6\. Career matching identifies suitable job roles.
+You will also need a **Google Gemini API key** for AI-powered recommendations.
 
-7\. AI-generated recommendations help improve the resume.
+---
 
-8\. The system analyzes the candidate profile and recommends the most appropriate resume template.
-
-9\. The user can preview and generate a professionally formatted resume.
-
-
-
-\---
-
-
-
-\## Installation
-
-
-
-\### 1. Clone the Repository
-
-
+## 1️⃣ Clone the Repository
 
 ```bash
-
 git clone <your-repository-url>
-
 cd AI-Resume-Analyzer
-
 ```
 
+---
 
+# 🐍 Backend Setup
 
-\### 2. Backend Setup
-
-
-
-Navigate to the backend:
-
-
+Navigate to the backend directory:
 
 ```bash
-
 cd backend
-
 ```
 
-
-
-Create a virtual environment:
-
-
+Create a Python virtual environment:
 
 ```bash
-
 python -m venv venv
-
 ```
 
-
-
-Activate it on Windows:
-
-
+### Windows
 
 ```bash
-
-venv\\Scripts\\activate
-
+venv\Scripts\activate
 ```
 
-
-
-Install dependencies:
-
-
+### macOS / Linux
 
 ```bash
+source venv/bin/activate
+```
 
+Install the required dependencies:
+
+```bash
 pip install -r requirements.txt
-
 ```
 
-
-
-Create a `.env` file inside the backend directory:
-
-
+Create a `.env` file inside the `backend` directory:
 
 ```env
-
-GEMINI\_API\_KEY=your\_gemini\_api\_key
-
+GEMINI_API_KEY=your_gemini_api_key
 ```
 
-
-
-Never commit the `.env` file or your real API key to GitHub.
-
-
-
-Start the FastAPI server:
-
-
+Start the FastAPI development server:
 
 ```bash
-
 python -m uvicorn app.main:app --reload
-
 ```
 
-
-
-The backend will normally run at:
-
-
+The backend will normally be available at:
 
 ```text
-
 http://127.0.0.1:8000
-
 ```
 
+FastAPI interactive API documentation will normally be available at:
 
+```text
+http://127.0.0.1:8000/docs
+```
 
-\---
+---
 
+# ⚛️ Frontend Setup
 
+Open a new terminal.
 
-\## Frontend Setup
-
-
-
-Open another terminal and navigate to the frontend:
-
-
+Navigate to the frontend directory:
 
 ```bash
-
 cd frontend
-
 ```
-
-
 
 Install dependencies:
 
-
-
 ```bash
-
 npm install
-
 ```
 
-
-
-Start the development server:
-
-
+Start the Vite development server:
 
 ```bash
-
 npm run dev
-
 ```
 
+Open the local URL displayed by Vite in your browser.
 
+---
 
-Open the local address displayed by Vite in your browser.
+# 🔐 Environment Variables
 
+The application uses environment variables to protect sensitive configuration.
 
+### Backend
 
-\---
+```env
+GEMINI_API_KEY=your_gemini_api_key
+```
 
+Never hard-code API keys directly into the source code.
 
+Never commit your `.env` file to GitHub.
 
-\## Resume Processing Modules
+---
 
+# 🛡️ Security
 
+Sensitive and generated files should be excluded from version control.
 
-The backend contains dedicated services for extracting and analyzing different parts of a resume:
+Recommended `.gitignore` entries:
 
-
-
-\- `parser.py` — extracts text from PDF and DOCX files
-
-\- `information\_extractor.py` — extracts general candidate information
-
-\- `skill\_extractor.py` — identifies technical skills
-
-\- `education\_extractor.py` — extracts educational information
-
-\- `experience\_extractor.py` — extracts professional experience
-
-\- `project\_extractor.py` — extracts projects
-
-\- `certification\_extractor.py` — extracts certifications
-
-\- `ats\_engine.py` — performs ATS analysis
-
-\- `ai\_service.py` — handles AI-powered recommendations
-
-\- `resume\_structurer.py` — structures resume information
-
-\- `resume\_generator.py` — generates professional resumes
-
-
-
-\---
-
-
-
-\## Smart Template Recommendation
-
-
-
-The application includes profile-aware resume template recommendations.
-
-
-
-For example:
-
-
-
-| Candidate Profile | Recommended Template |
-
-|---|---|
-
-| Student / Fresher | Fresher / Student |
-
-| Technical Early-Career Candidate | Modern Professional |
-
-| Experienced Candidate | Experienced Professional |
-
-| General Profile | Classic ATS |
-
-
-
-Professional experience is prioritized when determining whether a candidate should receive an experienced resume format.
-
-
-
-\---
-
-
-
-\## Security
-
-
-
-Sensitive information is excluded from version control.
-
-
-
-The project `.gitignore` prevents files such as the following from being uploaded:
-
-
-
-```text
-
+```gitignore
+# Environment variables
 .env
+*.env
 
+# Python
 venv/
+__pycache__/
+*.pyc
 
-node\_modules/
+# Node
+node_modules/
+dist/
 
+# Uploaded resumes
 backend/app/uploads/
 
-backend/app/generated\_resumes/
+# Generated resumes
+backend/app/generated_resumes/
 
+# IDE / OS
+.vscode/
+.DS_Store
 ```
 
+> ⚠️ **Important:** If an API key has ever been committed to GitHub, removing it from the latest file is not enough. Revoke the exposed key and generate a new one.
 
+---
 
-API keys should always be stored using environment variables.
+# 🌐 Deployment
 
+The project is designed to support separate frontend and backend deployments.
 
+A recommended deployment architecture is:
 
-\---
+```text
+GitHub Repository
+       │
+       ├───────────────┐
+       ▼               ▼
+React Frontend      FastAPI Backend
+       │               │
+       ▼               ▼
+    Vercel           Render
+       │               │
+       └───────┬───────┘
+               │
+               ▼
+        AI Resume Analyzer
+```
 
+### Frontend
 
+The React + Vite frontend can be deployed using **Vercel**.
 
-\## Future Improvements
+### Backend
 
+The FastAPI backend can be deployed using **Render** or another Python-compatible cloud platform.
 
+Production environment variables such as the Gemini API key should be configured through the hosting provider's environment-variable settings rather than committed to GitHub.
 
-\- Advanced AI-based resume rewriting
+---
 
-\- Job-description-to-resume matching
+# 📡 API Overview
 
-\- More ATS optimization metrics
+The backend provides REST API routes for the application's main functionality.
 
-\- Additional professional resume templates
+```text
+Upload Resume
+      ↓
+Analyze Resume
+      ↓
+ATS + Skill Analysis
+      ↓
+Career Matching
+      ↓
+AI Recommendations
+      ↓
+Resume Structuring
+      ↓
+Resume Generation
+```
 
-\- Resume keyword optimization
+FastAPI also provides interactive API documentation through Swagger UI, making backend endpoints easier to test during development.
 
-\- User authentication
+---
 
-\- Resume history dashboard
+# 🔮 Future Improvements
 
-\- Cloud deployment
+Planned enhancements include:
 
-\- Export options for additional document formats
+* 🔐 User authentication and authorization
+* 📝 Advanced AI-powered resume rewriting
+* 🎯 Job-description-to-resume matching
+* 📊 Advanced ATS optimization metrics
+* 🔑 Resume keyword optimization
+* 📈 Skill-gap analysis
+* 🎨 Additional professional resume templates
+* 📚 Resume history dashboard
+* ☁️ Cloud storage integration
+* 📤 Additional document export formats
+* 💼 Job recommendations
+* 📱 Improved mobile responsiveness
 
+---
 
+# 🎯 Project Purpose
 
-\---
+The **AI Resume Analyzer** was developed to demonstrate how modern web technologies and artificial intelligence can be combined to solve a practical career-development problem.
 
+The platform brings together:
 
+**Resume Parsing → ATS Analysis → Skill Detection → Career Matching → AI Recommendations → Smart Template Selection → Professional Resume Generation**
 
-\## Purpose
+into one unified full-stack application.
 
+---
 
+# 📜 License
 
-This project was developed to provide job seekers with a single platform for resume analysis, ATS evaluation, career matching, intelligent recommendations, and professional resume generation.
+This project is intended for **educational, academic, and portfolio purposes**.
 
+---
 
+## ⭐ Support
 
-\---
-
-
-
-\## License
-
-
-
-This project is intended for educational and portfolio purposes.
-
+If you find this project useful, consider giving the repository a ⭐ on GitHub.
